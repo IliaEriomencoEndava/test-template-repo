@@ -84,6 +84,6 @@ jobs:
         with:
           source-files: 'static/'
           destination-username: 'IliaEriomencoEndava'
-          destination-repository: 'github.com/IliaEriomencoEndava/test-template-repo'
+          destination-repository: 'test-template-repo'
           destination-directory: 'destination'
           commit-email: 'Ilia.Eriomenco@endava.com'
