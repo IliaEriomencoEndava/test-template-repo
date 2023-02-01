@@ -77,6 +77,12 @@ jobs:
               syncOptions:
                 - CreateNamespace=true
           EOF
+
+      - name: Check static folder content
+        working-directory: ./static
+        run: |
+          ls -la
+
       - name: Push generated static/service_main_app.yaml to destination folder
         uses: nkoppel/push-files-to-another-repository@master
         env:
@@ -86,4 +92,5 @@ jobs:
           destination-username: 'IliaEriomencoEndava'
           destination-repository: 'test-template-repo'
           destination-directory: 'destination'
+          destination-branch: 'main'
           commit-email: 'Ilia.Eriomenco@endava.com'
