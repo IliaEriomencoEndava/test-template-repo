@@ -78,10 +78,16 @@ jobs:
                 - CreateNamespace=true
           EOF
 
-      - name: Check static folder content
+      - name: Check static/service_main_app.yaml content
         working-directory: ./static
         run: |
           cat service_main_app.yaml
+
+      - name: Cache ./static folder
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./static 
 
       - name: Push generated static/service_main_app.yaml to destination folder
         uses: nkoppel/push-files-to-another-repository@master
