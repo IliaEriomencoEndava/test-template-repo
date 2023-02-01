@@ -84,10 +84,17 @@ jobs:
           cat service_main_app.yaml
 
       - name: Cache ./static folder
+        id: cache-static
         uses: actions/cache@v3
+        env:
+          cache-name: cache-static
         with:
-          path: |
-            ./static 
+          path: ~/static
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/service_main_app.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
       - name: Push generated static/service_main_app.yaml to destination folder
         uses: nkoppel/push-files-to-another-repository@master
