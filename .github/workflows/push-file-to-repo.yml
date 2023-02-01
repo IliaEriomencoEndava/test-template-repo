@@ -78,7 +78,7 @@ jobs:
                 - CreateNamespace=true
           EOF
       - name: Push generated static/service_main_app.yaml to destination folder
-        uses: nkoppel/push-files-to-another-repository@1.1.0
+        uses: nkoppel/push-files-to-another-repository@master
         env:
           API_TOKEN_GITHUB: ${{ env.GITHUB_TOKEN }}
         with:
