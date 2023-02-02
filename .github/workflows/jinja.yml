@@ -21,6 +21,8 @@ jobs:
   upload:
     name: Jinja2 templating
     runs-on: ubuntu-latest
+    env:
+      SERVER_HOST: development.example.com
     steps:
       - uses: actions/checkout@master
       - name: Generate yaml manifest
@@ -32,8 +34,6 @@ jobs:
           data_format: yaml
           variables: |
             release=${{ github.event.inputs.release }}
-        env:
-          SERVER_HOST: {{ github.event.inputs.environment }}.example.com
 
       - name: Check yaml manifest after generation
         working-directory: dest/
