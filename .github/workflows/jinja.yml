@@ -33,7 +33,7 @@ jobs:
           variables: |
             release=${{ github.event.inputs.release }}
         env:
-          SERVER_HOST: "{{ github.event.inputs.environment }}.example.com"
+          SERVER_HOST: {{ github.event.inputs.environment }}.example.com
 
       - name: Check yaml manifest after generation
         working-directory: dest/
