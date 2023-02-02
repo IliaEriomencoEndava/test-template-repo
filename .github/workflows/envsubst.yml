@@ -1,4 +1,4 @@
-name: Generate yaml manifest with Jinja
+name: Generate yaml manifest with envsubst
 
 on:
   workflow_dispatch:
