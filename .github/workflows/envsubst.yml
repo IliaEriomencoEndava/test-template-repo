@@ -26,6 +26,9 @@ jobs:
         run: |
           set -a
           . ./data/${{ github.event.inputs.environment }}_config_envsubst.txt
+          cat templates/deployment.yaml
+          cat templates/deployment.yaml | envsubst
+          cat templates/deployment.yaml | envsubst | sed '/^$/d'
           cat templates/deployment.yaml | envsubst | sed '/^$/d' > dest/deployment.yaml
 
       - name: Check yaml manifest after generation
