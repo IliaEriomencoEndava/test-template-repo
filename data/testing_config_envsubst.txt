@@ -1,3 +1,4 @@
-service_name="backend-test-service";
-some_environment_key="testing_value";
-release="1.0";
+
+service_name="backend-test-service"
+some_environment_key="testing_value"
+release="1.0"
