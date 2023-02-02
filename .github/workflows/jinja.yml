@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Setup nginx
+      - name: Generate yaml manifest
         uses: cuchi/jinja2-action@v1.2.0
         with:
           template: templates/deployment.yaml.j2
