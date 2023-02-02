@@ -39,11 +39,9 @@ jobs:
          cat deployment.yaml
 
       - name: Commit and push manifest
-        working-directory: dest/
         run: >
           git config user.email "Ilia.Eriomenco@endava.com" &&
           git config user.name "IliaEriomencoEndava" &&
           git add . &&
-          git mv deployment.yaml dest/ &&
           git commit -m "feat: New yaml manifest creation" &&
           git push origin HEAD:main
