@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: paytrix
+  name: deployment-backend-test-service
+  labels:
+    app: backend-test-service
+    env: development_value
+    release: 1.0
+    version: v1
