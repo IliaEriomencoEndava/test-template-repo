@@ -34,6 +34,7 @@ jobs:
          cat deployment.yaml
 
       - name: Commit and push manifest
+        continue-on-error: true
         run: >
           git config user.email "Ilia.Eriomenco@endava.com" &&
           git config user.name "IliaEriomencoEndava" &&
