@@ -4,19 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Environment: development, testing, staging, production. Default: development'
+        description: 'Environment: development, testing. Default: development'
         required: true
         default: 'development'
         type: choice
         options:
           - development
           - testing
-          - staging
-          - production
-      # service-name:
-      #   description: ''
-      #   required: true
-      #   default: 'backend-test-service'
+      release:
+        description: 'Release version'
+        required: true
+        default: '0.1'
         
 
 jobs:
@@ -32,6 +30,8 @@ jobs:
           output_file: dest/deployment.yaml
           data_file: data/${{ github.event.inputs.environment }}_config.yaml
           data_format: yaml
+          variables: |
+            release=${{ github.event.inputs.release }}
 
       - name: Check yaml manifest after generation
         working-directory: dest/
