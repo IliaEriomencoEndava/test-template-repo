@@ -1,0 +1,38 @@
+name: Generate yaml manifest with Jinja
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment: development, testing, staging, production. Default: development'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+          - development
+          - testing
+          - staging
+          - production
+      # service-name:
+      #   description: ''
+      #   required: true
+      #   default: 'backend-test-service'
+        
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup nginx
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: templates/deployment.yaml.j2
+          output_file: dest/deployment.yaml
+          data_file: data/${{ github.event.inputs.environment }}_config.yaml
+          data_format: yaml
+
+      - name: Check yaml manifest after generation
+        working-directory: dest/
+        run: |
+         cat deployment.yaml
