@@ -15,25 +15,18 @@ on:
         description: 'Release version'
         required: true
         default: '0.1'
-        
 
 jobs:
   upload:
     name: Jinja2 templating
     runs-on: ubuntu-latest
-    env:
-      SERVER_HOST: development.example.com
     steps:
       - uses: actions/checkout@master
       - name: Generate yaml manifest
-        uses: cuchi/jinja2-action@v1.2.0
-        with:
-          template: templates/deployment.yaml.j2
-          output_file: dest/deployment.yaml
-          data_file: data/${{ github.event.inputs.environment }}_config.yaml
-          data_format: yaml
-          variables: |
-            release=${{ github.event.inputs.release }}
+        run: |
+          set -a
+          . ./data/${{ github.event.inputs.environment }}_config_envsubst.yaml
+          cat templates/deployment.yaml | envsubst > dest/deployment.yaml
 
       - name: Check yaml manifest after generation
         working-directory: dest/
@@ -45,5 +38,5 @@ jobs:
           git config user.email "Ilia.Eriomenco@endava.com" &&
           git config user.name "IliaEriomencoEndava" &&
           git add . &&
-          git commit -m "feat: New yaml manifest creation with jinja2" &&
+          git commit -m "feat: New yaml manifest creation with envsubst" &&
           git push origin HEAD:main

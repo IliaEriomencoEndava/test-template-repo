@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: paytrix
+  name: deployment-${service_name}
+  labels:
+    app: ${service_name}
+    env: ${some_environment_key}
+    release: ${release}
+    version: v1
