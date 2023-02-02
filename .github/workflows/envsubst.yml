@@ -18,14 +18,14 @@ on:
 
 jobs:
   upload:
-    name: Jinja2 templating
+    name: envsubst templating
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Generate yaml manifest
         run: |
           set -a
-          . ./data/${{ github.event.inputs.environment }}_config_envsubst.yaml
+          . ./data/${{ github.event.inputs.environment }}_config_envsubst.txt
           cat templates/deployment.yaml | envsubst > dest/deployment.yaml
 
       - name: Check yaml manifest after generation
