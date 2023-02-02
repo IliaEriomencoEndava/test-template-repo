@@ -26,7 +26,7 @@ jobs:
         run: |
           set -a
           . ./data/${{ github.event.inputs.environment }}_config_envsubst.txt
-          cat templates/deployment.yaml | envsubst > dest/deployment.yaml
+          cat templates/deployment.yaml | envsubst | sed '/^$/d' > dest/deployment.yaml
 
       - name: Check yaml manifest after generation
         working-directory: dest/
